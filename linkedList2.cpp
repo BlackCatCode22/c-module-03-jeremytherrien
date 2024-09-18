@@ -13,7 +13,7 @@ using namespace std;
 struct Node
 {
 	string data; 
-	Node* next; 
+	Node* pNext; 
 };
 
 // Create a function that will print the linked list 
@@ -21,26 +21,44 @@ void printList(Node* pHead);
 
 int main()
 {
-	Node* head = new Node(); 
-	Node* second = new Node(); 
-	Node* last = new Node(); 
+	Node* pHead = new Node(); 
+	Node* pSecond = new Node(); 
+	Node* pThird = new Node(); 
 
-	// fill the data structure link the pointers
-	head->data = "z";
-	head->next = second; 
-	second->data = "b";
-	second->next = last; 
-	last->data = "c";
-	last->next = nullptr; 
+	// fill the data structure and link the pointers
+	pHead->data = "z";
+	pHead->pNext = pSecond; 
+	pSecond->data = "b";
+	pSecond->pNext = pThird; 
+	pThird->data = "c";
+	pThird->pNext = nullptr; 
 
-	printList(head); 
+	// Call the printList function
+	printList(pHead); 
+
+
+	// Add a few nodes to my linked list 
+	Node* pCurrent = new Node(); 
+	pCurrent->data = "d";
+	pCurrent->pNext = pHead; 
+
+	// reposition head of the list 
+	pHead = pCurrent; 
+
+	// Test by calling printList
+	cout << "Printing the new list" << endl; 
+	printList(pHead); 
+
+
+
+
 }
 
 void printList(Node* pHead)
 {
 	while (pHead != nullptr)
 	{
-		cout << pHead->data << endl; 
-		pHead = pHead->next; 
+		cout << pHead->data << endl;
+		pHead = pHead->pNext; 
 	}
 }
